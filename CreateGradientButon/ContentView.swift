@@ -8,9 +8,32 @@
 
 import SwiftUI
 
+struct CreateGradientButtonStyle: ButtonStyle {
+    func makeBody(configuration: Self.Configuration) -> some View {
+        configuration.label
+            .frame(minWidth: 0, maxWidth: .infinity)
+            .padding()
+            .foregroundColor(.white)
+            .background(LinearGradient(gradient: Gradient(colors: [Color.orange, Color.purple]), startPoint: .topLeading, endPoint: .bottomTrailing))
+            .cornerRadius(15)
+            .padding(.horizontal, 15)
+        
+    }
+}
+
 struct ContentView: View {
     var body: some View {
-        Text("Hello, World!")
+        Button(action: {
+            print("Action button clicked")
+        }) {
+            HStack {
+                Image(systemName: "heart.fill")
+                    .font(.title)
+                Text("Love SwiftUI")
+                    .fontWeight(.semibold)
+                    .font(.title)
+            }
+        }.buttonStyle(CreateGradientButtonStyle())
     }
 }
 
